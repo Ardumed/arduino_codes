@@ -1,23 +1,20 @@
-#define EMITTER 2
-#define RECEIVER A0
-#define THRESHOLD 100
-#define BUZZER 13
 void setup() {
   // put your setup code here, to run once:
-  // SETUP IR
-  pinMode(EMITTER, OUTPUT);
-  pinMode(RECEIVER, INPUT);
-  // SETUP Buzzer
-  pinMode(BUZZER, OUTPUT);
+  pinMode(A0, INPUT);
+  pinMode(A1, OUTPUT);
+  pinMode(13, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int receiverValue = analogRead(RECEIVER);
-  
-  if( receiverValue < THRESHOLD ){
-    digitalWrite(BUZZER, HIGH);
+  digitalWrite(A1, HIGH);
+  int x = analogRead(A0);
+  Serial.println(x);
+  if(x>=97){
+    digitalWrite(13, HIGH);
   }else{
-    digitalWrite(BUZZER, LOW);
+    digitalWrite(13, LOW);
   }
+  delay(100);
 }

@@ -1,28 +1,23 @@
-#define EMITTER 2
-#define RECEIVER A0
-#define THRESHOLD 100
-#define BUZZER 13
-#define LIGHT A1
-void setup() {
-  // put your setup code here, to run once:
-  // SETUP IR
-  pinMode(EMITTER, OUTPUT);
-  pinMode(RECEIVER, INPUT);
-  // SETUP Buzzer and LED
-  pinMode(BUZZER, OUTPUT);
-  pinMode(LIGHT, OUTPUT);
+int sensorPin = A1;    // select the input pin for the potentiometer
+int ledPin = 13;      // select the pin for the LED
+int sensorValue = 0;  // variable to store the value coming from the sensor
 
-  digitalWrite(EMITTER, HIGH);
+void setup() {
+  // declare the ledPin as an OUTPUT:
+//  pinMode(ledPin, OU/TPUT);
+//  pinMode(sensorPin, INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int receiverValue = analogRead(RECEIVER);
-  if( receiverValue < THRESHOLD ){
-    digitalWrite(BUZZER, HIGH);
-    analogWrite(LIGHT, HIGH);
-  }else{
-    digitalWrite(BUZZER, LOW);
-    analogWrite(LIGHT, LOW);
-  }
+  // read the value from the sensor:
+  sensorValue = analogRead(sensorPin);
+  // turn the ledPin on
+//  digitalWrite(ledPin, HIGH);
+  // stop the program for <sensorValue> milliseconds:
+  Serial.println(sensorValue);
+  // turn the ledPin off:
+//  digitalWrite(ledPin, LOW);
+  // stop the program for for <sensorValue> milliseconds:
+  delay(500);
 }
