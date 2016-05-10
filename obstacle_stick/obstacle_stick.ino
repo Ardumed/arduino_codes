@@ -1,23 +1,28 @@
-int sensorPin = A1;    // select the input pin for the potentiometer
-int ledPin = 13;      // select the pin for the LED
-int sensorValue = 0;  // variable to store the value coming from the sensor
-
+#define RED A2
+#define GREEN A3
+#define BUZZER A4
 void setup() {
-  // declare the ledPin as an OUTPUT:
-//  pinMode(ledPin, OU/TPUT);
-//  pinMode(sensorPin, INPUT);
+  // put your setup code here, to run once:
+  pinMode(A0, INPUT);
+  pinMode(A1, OUTPUT);
+  pinMode(13, OUTPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  // read the value from the sensor:
-  sensorValue = analogRead(sensorPin);
-  // turn the ledPin on
-//  digitalWrite(ledPin, HIGH);
-  // stop the program for <sensorValue> milliseconds:
-  Serial.println(sensorValue);
-  // turn the ledPin off:
-//  digitalWrite(ledPin, LOW);
-  // stop the program for for <sensorValue> milliseconds:
-  delay(500);
+  // put your main code here, to run repeatedly:
+  digitalWrite(A1, HIGH);
+  int x = analogRead(A0);
+  Serial.println(x);
+  if(x>=97){
+    digitalWrite(GREEN, LOW);
+    digitalWrite(RED, HIGH);
+    digitalWrite(BUZZER, HIGH);
+  }else{
+    digitalWrite(RED, LOW);
+    digitalWrite(GREEN, HIGH);
+    digitalWrite(BUZZER, LOW);
+  }
+  delay(100);
 }
+
